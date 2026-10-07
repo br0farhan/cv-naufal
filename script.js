@@ -33,4 +33,35 @@ document.addEventListener('DOMContentLoaded', () => {
             heroImage.style.transform = `translateY(${scrolled * 0.15}px)`;
         }
     });
+
+    // Modal Logic
+    const modal = document.getElementById("certModal");
+    const closeBtn = document.querySelector(".close-modal");
+    const iframe = document.getElementById("certIframe");
+
+    // Close when clicking the 'x'
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            iframe.src = ""; // Stop loading/playing
+        }
+    }
+
+    // Close when clicking outside the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            iframe.src = ""; // Stop loading/playing
+        }
+    }
 });
+
+// Global function to open modal
+function openModal(url) {
+    const modal = document.getElementById("certModal");
+    const iframe = document.getElementById("certIframe");
+    if (modal && iframe) {
+        iframe.src = url;
+        modal.style.display = "block";
+    }
+}
